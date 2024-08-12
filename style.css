@@ -1,0 +1,424 @@
+* {
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent; /* Added for mobile touch optimization */
+    }
+    .game-container {
+      position: relative;
+      z-index: 1;
+      width: 340px;
+      height: 535px; /* Increased height for vertical movement */
+      border: 7px solid #077be0;
+      border-radius: 15px;
+     /* background: #1b2a38; */
+     background: url(assets/textures/GCB-OG.png);
+     background-position: center;
+     background-size: cover;
+     background-repeat: no-repeat;
+     background-attachment: fixed;
+     background-position-y: -5px;
+      box-shadow: 0px 105px 0px #33a0ff;
+      margin: 20px auto;
+      overflow: hidden;
+      margin-top: 10px;
+    }
+    .player-c {
+      animation: up-down 2s infinite;
+    }
+    @keyframes up-down {
+            0% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px); /* Adjust the distance as needed */
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+    #player {
+      width: 50px;
+      height: 50px;
+      background-color: none;
+      position: absolute;
+      top: 100%;
+      left: 43%;
+      border-radius: 0px;
+      border: none;
+      transition: top 0.1s linear, left 0.1s linear;
+      
+    }
+    @keyframes up-down {
+            0% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px); /* Adjust the distance as needed */
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+    .controls {
+      position: relative;
+      z-index: 5;
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+      gap: 15px;
+    }
+    button {
+      width: 70px;
+      height: 70px;
+      background: linear-gradient(to bottom, #33a0ff , #058aff);
+      border-radius: 10px;
+      border: 1px solid white;
+      color: white;
+      font-size: 30px;
+      box-shadow: 0px 5px 0px #0b7ee3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    button:active {
+      transform: scale(0.95);
+      box-shadow: 0 1px 1px rgba(0, 0, 0, 0.4);
+    }
+    #pause {
+      background: linear-gradient(to bottom, #33a0ff , #058aff);
+      color: white;
+    }
+    #pause:active, #pause:hover {
+      background: linear-gradient(to bottom, #ff3d00 , #ff5722);
+    }
+    .info {
+      display: none;
+      width: 90%;
+      margin-left: 8px;
+      text-align: center;
+      margin-top: 25px;
+      background-color: #1b2a38;
+      color: white;
+      font-family: 'Press Start 2P', cursive;
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 10px;
+    }
+    .box {
+      background-image: url(stone.png), url(player.png);
+      background-position: center;
+      background-size: cover;
+      width: 40px;
+      height: 40px;
+      position: absolute;
+      border-radius: 5px;
+      transition: top 0.1s linear, left 0.1s linear;
+    }
+    audio {
+      display: none;
+    }
+    .GameOverContainer {
+      display: none;
+      position: relative;
+      z-index: 100;
+      margin-top: -180.3%;
+      width: 100%;
+      height: 40px;
+    }
+    .GameOver {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(10px);
+      color: #fff;
+      text-align: center;
+      animation: fadeIn 1s ease-in-out;
+    }
+    .GameOver h1 {
+      font-size: 55px;
+      font-family: "permanent marker", static;
+      font-weight: 400;
+      font-style: normal;
+      margin-bottom: 20px;
+      letter-spacing: 2px;
+      text-shadow: 2px 2px 4px #000;
+      animation: zoomIn 1s ease;
+      animation: scale 3s infinite;
+    }
+    @keyframes scale {
+      0%, 100% {
+        transform: scale(0.95);
+      }
+      50% {
+        transform: scale(1)
+      }
+    }
+    .GameOver p {
+      font-family: "Shadows Into Light" , sans-serif;
+      font-size: 41px;
+      margin-bottom: 20px;
+      animation: score 2s infinite;
+    }
+    @keyframes score {
+      0% , 100% {
+        transform: rotate(-1deg)
+      }
+      50% {
+        transform: rotate(1deg)
+      }
+    }
+
+    .GameOver button {
+      font-family: "Kanit", sans-serif;
+      font-weight: 700;
+      padding: 15px 100px;
+      margin: 15px 0;
+      font-size: 1.2em;
+      background-color: #33a0ff;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.2s;
+      box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+    }
+    .GameOver button:hover {
+      background-color: #1e80cc;
+      transform: scale(1.05);
+    }
+    .GameOver button:active {
+      transform: scale(0.95);
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes zoomIn {
+      from { transform: scale(0.5); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+    .GameOver p#finalCoins {
+  font-family: "Shadows Into Light", sans-serif;
+  font-size: 30px; /* Smaller size compared to score */
+  margin-bottom: 40px; /* Space between score and coins */
+  animation: score 2s infinite; /* Add some animation if needed */
+}
+
+    .gct {
+      position: relative;
+      z-index: 101;
+      background: linear-gradient(to bottom, #33a0ff , #058aff);
+      width: 100%;
+    }
+    .scoreboard {
+  position: absolute;
+  top: 10px;
+  z-index: 1002;
+  right: 5px;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 5px 5px;
+  border-radius: 5px;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 15px;
+  
+}
+.item {
+  width: 30px;
+  height: 30px;
+  background-color: gold;
+  position: absolute;
+  border-radius: 50%;
+  transition: top 0.1s linear, left 0.1s linear;
+}
+
+.coin {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+ background-image: url('assets/textures/coin.png');
+  /* Add your coin image here */
+  background-size: cover;*/
+  border-radius: 50%;
+  background-color: transparent;
+  transition: top 0.1s linear, left 0.1s linear;
+  animation: spin 4s infinite;
+}
+@keyframes spin {
+            from {
+                transform: rotateY(0deg);
+            }
+            to {
+                transform: rotateY(360deg);
+            }
+        }
+
+/* Settings Code */
+
+
+#pause-overlay {
+  display: none ;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+#pause-overlay h1 {
+  font-size: 70px;
+  font-family: "Permanent Marker", cursive;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+#pause-button-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+}
+
+.button-settings {
+  height: 60px;
+  background: linear-gradient(to right, #33a0ff, #058aff);
+  border: none;
+  color: white;
+  font-size: 18px;
+  border-radius: 10px;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.6);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  font-family: "Kanit", sans-serif;
+  padding: 0 75px;
+}
+
+.button-settings:hover {
+  background: linear-gradient(to right, #058aff, #33a0ff);
+  transform: scale(1.05);
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.7);
+}
+
+.button-settings:active {
+  transform: scale(0.95);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.7);
+}
+
+.button-settings i {
+  font-size: 25px;
+  margin-right: 15px;
+}
+
+.span-2 {
+  grid-column: span 2;
+  justify-content: center;
+  padding: 0 43.5vw;
+}
+
+.span-2 i {
+  margin-right: 10px;
+}
+    body {
+      background: #003366;
+      color: white;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden; /* Prevent scroll bars */
+    }
+    .mute-button {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      font-size: 30px;
+      cursor: pointer;
+    }
+    .start-screen {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 90%;
+      max-width: 600px; /* Adjusted max width */
+      background: rgba(0, 0, 0, 0.8); /* Semi-transparent overlay */
+      padding: 20px; /* Added padding */
+      border-radius: 10px; /* Rounded corners for aesthetics */
+      text-align: center;
+    }
+    .start-screen h1 {
+      font-size: 40px;
+      margin-bottom: 20px;
+      animation: scaleUpDown 2s infinite alternate;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+      font-family: 'Press Start 2P', cursive;
+      font-weight: 800;
+      font-style: normal;
+      white-space: nowrap; /* Prevents line break */
+    }
+    @keyframes scaleUpDown {
+      0% { transform: scale(1); }
+      100% { transform: scale(1.1); }
+    }
+    .button-container {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      width: 100%;
+    }
+    .button-container .top-row,
+    .button-container .bottom-row {
+      display: flex;
+      gap: 10px;
+      width: 100%;
+    }
+    .button-container .top-row {
+      justify-content: center;
+    }
+    .button-container .bottom-row {
+      justify-content: center;
+    }
+    .button-container .bottom-row .wide-button {
+      width: 100%;
+    }
+    .button-container button {
+      width: 100%;
+      height: 60px;
+      background: linear-gradient(to bottom, #33a0ff, #058aff);
+      border: none;
+      color: white;
+      font-size: 18px;
+      border-radius: 10px;
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.6);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .button-container button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.6);
+    }
+    .button-container button:active {
+      transform: scale(0.95);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+    }
+    .start-screen i {
+      margin-right: 10px;
+    }
+    h1 {
+      margin-top: 5px;
+    }

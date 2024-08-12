@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About This Game</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom, #33a0ff, #058aff);
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+    .about-section {
+      background-color: rgba(0, 0, 0, 0.8);
+      color: white;
+      padding: 20px;
+      margin: 20px auto;
+      border-radius: 10px;
+      width: 90%;
+      max-width: 800px;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    }
+    .about-content h2 {
+      font-family: 'Oswald', sans-serif;
+      font-size: 36px;
+      margin-bottom: 20px;
+    }
+    .section-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: 28px;
+      margin-top: 20px;
+      border-bottom: 2px solid #33a0ff;
+      padding-bottom: 10px;
+    }
+    .about-content p {
+      font-family: 'Arial', sans-serif;
+      font-size: 18px;
+      line-height: 1.6;
+      margin: 10px 0;
+    }
+    .about-content strong {
+      color: #33a0ff;
+    }
+    .back-button {
+      display: inline-flex;
+      align-items: center;
+      background: #33a0ff;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      font-size: 18px;
+      margin-top: 20px;
+      text-decoration: none;
+      cursor: pointer;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+      transition: background-color 0.3s, transform 0.2s;
+    }
+    .back-button:hover {
+      background-color: #058aff;
+      transform: scale(1.05);
+    }
+    .back-button:active {
+      transform: scale(0.95);
+    }
+    .back-button i {
+      margin-right: 8px;
+    }
+  </style>
+</head>
+<body>
+  <section id="about" class="about-section">
+    <div class="about-content">
+      <h2>About This Game</h2>
+      
+      <div class="section-title">Developer Information</div>
+      <p>Hi, I'm <strong>Bunny</strong>, a 16-year-old game developer.</p>
+      
+      <div class="section-title">Purpose of the Game</div>
+      <p>This is my first game project. I created this game to learn and practice game development.</p>
+      
+      <div class="section-title">Resources Used</div>
+      <p>All the resources in this game are either created by me or sourced from the internet, ensuring they are copyright-free.</p>
+      
+      <div class="section-title">About the Development</div>
+      <p>As a beginner developer, you might encounter some bugs in the game. I’m aware of this and will be fixing these issues in future updates.</p>
+      
+      <div class="section-title">Acknowledgements</div>
+      <p>Thank you for checking out my game!</p>
+
+      <!-- Back to Menu Button -->
+      <a href="index.html" class="back-button">
+        <i class="fas fa-arrow-left"></i> Back to Menu
+      </a>
+    </div>
+    <audio id="bgMusic" src="assets/sounds/chill.mp3" loop></audio>
+  </section>
+  <script src="main.js">main.js</script>
+</body>
+</html>

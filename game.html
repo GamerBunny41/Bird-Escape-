@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Gupter:wght@400;500;700&family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Permanent+Marker&family=Radio+Canada+Big:ital,wght@0,400..700;1,400..700&family=Shadows+Into+Light&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent; /* Added for mobile touch optimization */
+    }
+    .game-container {
+      position: relative;
+      z-index: 1;
+      width: 340px;
+      height: 535px; /* Increased height for vertical movement */
+      border: 7px solid #077be0;
+      border-radius: 15px;
+     /* background: #1b2a38; */
+     background: url(assets/textures/GCB-OG.png);
+     background-position: center;
+     background-size: cover;
+     background-repeat: no-repeat;
+     background-attachment: fixed;
+     background-position-y: -5px;
+      box-shadow: 0px 105px 0px #33a0ff;
+      margin: 20px auto;
+      overflow: hidden;
+      margin-top: 10px;
+    }
+    .player-c {
+      animation: up-down 2s infinite;
+    }
+    @keyframes up-down {
+            0% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px); /* Adjust the distance as needed */
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+    #player {
+      width: 50px;
+      height: 50px;
+      background-color: none;
+      position: absolute;
+      top: 100%;
+      left: 43%;
+      border-radius: 0px;
+      border: none;
+      transition: top 0.1s linear, left 0.1s linear;
+      
+    }
+    @keyframes up-down {
+            0% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px); /* Adjust the distance as needed */
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+    .controls {
+      position: relative;
+      z-index: 5;
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+      gap: 15px;
+    }
+    button {
+      width: 70px;
+      height: 70px;
+      background: linear-gradient(to bottom, #33a0ff , #058aff);
+      border-radius: 10px;
+      border: 1px solid white;
+      color: white;
+      font-size: 30px;
+      box-shadow: 0px 5px 0px #0b7ee3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    button:active {
+      transform: scale(0.95);
+      box-shadow: 0 1px 1px rgba(0, 0, 0, 0.4);
+    }
+    #pause {
+      background: linear-gradient(to bottom, #33a0ff , #058aff);
+      color: white;
+    }
+    #pause:active, #pause:hover {
+      background: linear-gradient(to bottom, #ff3d00 , #ff5722);
+    }
+    .info {
+      display: none;
+      width: 90%;
+      margin-left: 8px;
+      text-align: center;
+      margin-top: 25px;
+      background-color: #1b2a38;
+      color: white;
+      font-family: 'Press Start 2P', cursive;
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 10px;
+    }
+    .box {
+      background-image: url(stone.png), url(player.png);
+      background-position: center;
+      background-size: cover;
+      width: 40px;
+      height: 40px;
+      position: absolute;
+      border-radius: 5px;
+      transition: top 0.1s linear, left 0.1s linear;
+    }
+    audio {
+      display: none;
+    }
+    .GameOverContainer {
+      display: none;
+      position: relative;
+      z-index: 100;
+      margin-top: -180.3%;
+      width: 100%;
+      height: 40px;
+    }
+    .GameOver {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(10px);
+      color: #fff;
+      text-align: center;
+      animation: fadeIn 1s ease-in-out;
+    }
+    .GameOver h1 {
+      font-size: 55px;
+      font-family: "permanent marker", static;
+      font-weight: 400;
+      font-style: normal;
+      margin-bottom: 20px;
+      letter-spacing: 2px;
+      text-shadow: 2px 2px 4px #000;
+      animation: zoomIn 1s ease;
+      animation: scale 3s infinite;
+    }
+    @keyframes scale {
+      0%, 100% {
+        transform: scale(0.95);
+      }
+      50% {
+        transform: scale(1)
+      }
+    }
+    .GameOver p {
+      font-family: "Shadows Into Light" , sans-serif;
+      font-size: 41px;
+      margin-bottom: 20px;
+      animation: score 2s infinite;
+    }
+    @keyframes score {
+      0% , 100% {
+        transform: rotate(-1deg)
+      }
+      50% {
+        transform: rotate(1deg)
+      }
+    }
+
+    .GameOver button {
+      font-family: "Kanit", sans-serif;
+      font-weight: 700;
+      padding: 15px 100px;
+      margin: 15px 0;
+      font-size: 1.2em;
+      background-color: #33a0ff;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.2s;
+      box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+    }
+    .GameOver button:hover {
+      background-color: #1e80cc;
+      transform: scale(1.05);
+    }
+    .GameOver button:active {
+      transform: scale(0.95);
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes zoomIn {
+      from { transform: scale(0.5); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+    .GameOver p#finalCoins {
+  font-family: "Shadows Into Light", sans-serif;
+  font-size: 30px; /* Smaller size compared to score */
+  margin-bottom: 40px; /* Space between score and coins */
+  animation: score 2s infinite; /* Add some animation if needed */
+}
+
+    .gct {
+      position: relative;
+      z-index: 101;
+      background: linear-gradient(to bottom, #33a0ff , #058aff);
+      width: 100%;
+    }
+    .scoreboard {
+  position: absolute;
+  top: 10px;
+  z-index: 1002;
+  right: 5px;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 5px 5px;
+  border-radius: 5px;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 15px;
+  
+}
+.item {
+  width: 30px;
+  height: 30px;
+  background-color: gold;
+  position: absolute;
+  border-radius: 50%;
+  transition: top 0.1s linear, left 0.1s linear;
+}
+
+.coin {
+  width: 40px;
+  height: 40px;
+  position: absolute;
+ background-image: url('assets/textures/coin.png');
+  /* Add your coin image here */
+  background-size: cover;*/
+  border-radius: 50%;
+  background-color: transparent;
+  transition: top 0.1s linear, left 0.1s linear;
+  animation: spin 4s infinite;
+}
+@keyframes spin {
+            from {
+                transform: rotateY(0deg);
+            }
+            to {
+                transform: rotateY(360deg);
+            }
+        }
+
+/* Settings Code */
+
+
+#pause-overlay {
+  display: none ;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+#pause-overlay h1 {
+  font-size: 70px;
+  font-family: "Permanent Marker", cursive;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+#pause-button-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+}
+
+.button-settings {
+  height: 60px;
+  background: linear-gradient(to right, #33a0ff, #058aff);
+  border: none;
+  color: white;
+  font-size: 18px;
+  border-radius: 10px;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.6);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  font-family: "Kanit", sans-serif;
+  padding: 0 75px;
+}
+
+.button-settings:hover {
+  background: linear-gradient(to right, #058aff, #33a0ff);
+  transform: scale(1.05);
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.7);
+}
+
+.button-settings:active {
+  transform: scale(0.95);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.7);
+}
+
+.button-settings i {
+  font-size: 25px;
+  margin-right: 15px;
+}
+
+.span-2 {
+  grid-column: span 2;
+  justify-content: center;
+  padding: 0 43.5vw;
+}
+
+.span-2 i {
+  margin-right: 10px;
+}
+/* Keyframes for jump animation */
+/* Keyframes for smooth jump animation */
+
+
+
+
+  </style>
+</head>
+<body>
+  
+
+
+  <section id="Main-Game">
+    <div class="game-header"></div>
+    <div class="game-container">
+        <div class="scoreboard">
+  <p id="scoreDisplay">Score: 0</p>
+  <p id="coinDisplay">Coins: 0</p> <!-- New coin scoreboard -->
+</div>
+
+        <div class="player-c">
+      <img id="player" src="assets/textures/bird.png">
+      </div>
+    </div>
+    <div class="controls">
+      <button id="left" ontouchstart="startMove('left')" ontouchend="stopMove()"><i class="fas fa-arrow-left"></i></button>
+      <button id="right" ontouchstart="startMove('right')" ontouchend="stopMove()"><i class="fas fa-arrow-right"></i></button>
+      <button id="up" ontouchstart="startJump()"><i class="fas fa-arrow-up"></i></button>
+      <button id="pause"><i class="fas fa-pause"></i></button>
+    </div>
+    
+    <div class="info">
+      <p>Use the arrow buttons to move the player within the game area.</p>
+      <p>Try to navigate and explore!</p>
+    </div>
+    <div class="GameOverContainer">
+  <div class="GameOver">
+    <h1>Game Over!</h1>
+    <p id="finalScore"></p> <!-- Display score here -->
+    <p id="finalCoins"></p> <!-- Display coins here -->
+    <button id="GOmenu">Menu</button>
+    <button id="GOrestart">Restart</button>
+  </div>
+</div>
+
+<div id="pause-overlay">
+  <h1>Paused</h1>
+  <div id="pause-button-container">
+    <button id="resume-btn" class="button-settings">
+      <i class="fas fa-play"></i>
+      <span>Resume</span>
+    </button>
+    <button id="restart-btn" class="button-settings">
+      <i class="fas fa-rotate"></i>
+      <span>Restart</span>
+    </button>
+    <button id="menu-btn" class="button-settings">
+      <i class="fas fa-home"></i>
+      <span>Menu</span>
+    </button>
+    <button id="sound-btn" class="button-settings">
+      <i class="fas fa-volume-up"></i>
+      <span>Sound</span>
+    </button>
+    <button id="help-btn" class="button-settings span-2">
+      <i class="fas fa-question-circle"></i>
+      <span>Help</span>
+    </button>
+    <button id="exit-btn" class="button-settings span-2">
+      <i class="fas fa-sign-out-alt"></i>
+      <span>Exit</span>
+    </button>
+  </div>
+</div>
+
+
+  </section>
+  
+  <audio id="clickSound" src="assets/sounds/sc.wav"></audio>
+  <audio id="gameOverSound" src="assets/sounds/game-over.wav"></audio>
+  <audio id="coin-collect" src="assets/sounds/coin-collect.wav"></audio>
+  <audio id="jump-sound" src="assets/sounds/jump.wav"></audio>
+  <audio id="introSound" src="assets/sounds/intro-sound.wav"></audio>
+  
+  <script src="main.js">main.js</script>
+</body>
+</html>

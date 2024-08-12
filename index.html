@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+      box-sizing: border-box;
+    }
+    body {
+      background: #003366;
+      color: white;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden; /* Prevent scroll bars */
+    }
+    .mute-button {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      font-size: 30px;
+      cursor: pointer;
+    }
+    .start-screen {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 90%;
+      max-width: 600px; /* Adjusted max width */
+      background: rgba(0, 0, 0, 0.8); /* Semi-transparent overlay */
+      padding: 30px; /* Increased padding */
+      border-radius: 15px; /* More rounded corners */
+      text-align: center;
+    }
+    .start-screen h1 {
+      font-size: 45px; /* Increased font size */
+      margin-bottom: 30px; /* Increased bottom margin */
+      animation: scaleUpDown 2s infinite alternate;
+      text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.8); /* Darker and larger shadow */
+      font-family: 'Press Start 2P', cursive;
+      font-weight: 800;
+      font-style: normal;
+       /* Prevents line break */
+    }
+    @keyframes scaleUpDown {
+      0% { transform: scale(1); }
+      100% { transform: scale(1.1); }
+    }
+    .button-container {
+      display: flex;
+      flex-direction: column;
+      gap: 15px; /* Increased gap between rows */
+      width: 100%;
+    }
+    .button-container .top-row,
+    .button-container .bottom-row {
+      display: flex;
+      gap: 15px;
+      width: 100%;
+    }
+    .button-container .top-row {
+      justify-content: center;
+    }
+    .button-container .bottom-row {
+      justify-content: center;
+    }
+    .button-container .bottom-row .wide-button {
+      width: 100%;
+    }
+    .button-container button {
+      width: 100%;
+      height: 60px;
+      background: linear-gradient(to bottom, #33a0ff, #058aff);
+      border: none;
+      color: white;
+      font-size: 18px;
+      border-radius: 10px;
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.6);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .button-container button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.6);
+    }
+    .button-container button:active {
+      transform: scale(0.95);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+    }
+    .start-screen i {
+      margin-right: 10px;
+    }
+    h1 {
+      margin-top: 5px;
+    }
+    .quote-screen {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      color: white;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      z-index: 9999;
+      font-size: 24px;
+      padding: 20px;
+    }
+    .quote-screen p {
+      margin: 20px 0;
+      font-family: 'Press Start 2P', cursive;
+    }
+  </style>
+</head>
+<body>
+  <i class="fas fa-volume-mute mute-button" id="muteButton" onclick="toggleMute()"></i>
+
+  <div class="start-screen">
+    <h1 class="game-title">BIRD<br>ESCAPE</h1> <!-- Title split into two lines -->
+    <div class="button-container">
+      <div class="top-row">
+        <button onclick="startGame()"><i class="fas fa-play"></i>Play</button>
+      </div>
+      <div class="bottom-row">
+        <button onclick="openSettings()"><i class="fas fa-cog"></i>Settings</button>
+        <button onclick="shareGame()"><i class="fas fa-share-alt"></i>Share</button>
+      </div>
+      <div class="bottom-row">
+        <button onclick="showAbout()"><i class="fas fa-info-circle"></i>About</button>
+        <button class="wide-button" onclick="exitGame()"><i class="fas fa-times"></i>Exit Game</button>
+      </div>
+      <div class="bottom-row">
+        <button onclick="showHowToPlay()"><i class="fas fa-question-circle"></i>How to Play</button>
+      </div>
+    </div>
+  </div>
+
+  <audio id="bgMusic" src="assets/sounds/chill.mp3" loop></audio>
+  <audio id="Menu_Click" src="assets/sounds/menu-click.mp3"></audio>
+
+  <script src="main.js"></script>
+</body>
+</html>

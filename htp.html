@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Game Help</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom, #33a0ff, #058aff);
+      color: white;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      width: 80%;
+      max-width: 900px;
+      margin: 20px auto;
+      padding: 20px;
+      border-radius: 10px;
+      background: rgba(0, 0, 0, 0.8);
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    }
+    h1 {
+      font-size: 32px;
+      text-align: center;
+      color: #ffffff;
+      margin-bottom: 20px;
+      font-family: 'Oswald', sans-serif;
+    }
+    .section {
+      margin-bottom: 20px;
+    }
+    .section h2 {
+      font-size: 24px;
+      margin-bottom: 15px;
+      color: #ffffff;
+      font-family: 'Oswald', sans-serif;
+    }
+    .section p {
+      font-size: 18px;
+      line-height: 1.6;
+      color: #dddddd;
+    }
+    .controls-list {
+      list-style: none;
+      padding: 0;
+    }
+    .controls-list li {
+      margin-bottom: 15px;
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+    }
+    .controls-list li i {
+      font-size: 28px; /* Increased icon size */
+      margin-right: 15px;
+      color: #ffffff;
+      background: rgba(0, 0, 0, 0.5); /* Light background behind icons */
+      border-radius: 50%;
+      padding: 8px;
+    }
+    .controls-list li span {
+      background: rgba(0, 0, 0, 0.5); /* Light background behind text */
+      padding: 5px;
+      border-radius: 5px;
+    }
+    .button-container {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+    .button-container button {
+      background: #33a0ff;
+      border: none;
+      color: white;
+      font-size: 16px;
+      border-radius: 5px;
+      padding: 10px 20px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      transition: background 0.3s, transform 0.2s;
+    }
+    .button-container button:hover {
+      background: #058aff;
+      transform: scale(1.05);
+    }
+    .button-container button:active {
+      transform: scale(0.95);
+    }
+    .button-container button i {
+      margin-right: 8px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Game Instructions</h1>
+    
+    <div class="section">
+      <h2>How to Play</h2>
+      <p>Use the following controls to navigate and interact with the game:</p>
+      <ul class="controls-list">
+        <li><i class="fas fa-arrow-left"></i> <span><strong>Move Left:</strong> Press the left arrow button to move the player left.</span></li>
+        <li><i class="fas fa-arrow-right"></i> <span><strong>Move Right:</strong> Press the right arrow button to move the player right.</span></li>
+        <li><i class="fas fa-arrow-up"></i> <span><strong>Jump:</strong> Press the up arrow button to make the player jump.</span></li>
+        <li><i class="fas fa-pause"></i> <span><strong>Pause:</strong> Press the pause button to pause the game.</span></li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>Objective</h2>
+      <p>Your goal is to navigate the player character, avoid obstacles, and collect coins to increase your score. The game ends when you collide with an obstacle.</p>
+    </div>
+
+    <div class="section">
+      <h2>Game Elements</h2>
+      <ul class="controls-list">
+        <li><i class="fas fa-cube"></i> <span><strong>Obstacles:</strong> Avoid these as they will end the game if you collide with them.</span></li>
+        <li><i class="fas fa-coins"></i> <span><strong>Coins:</strong> Collect coins to increase your score. Coins appear randomly on the screen.</span></li>
+        <li><i class="fas fa-tachometer-alt"></i> <span><strong>Score:</strong> Your score increases by avoiding obstacles and collecting coins.</span></li>
+      </ul>
+    </div>
+
+    <div class="section button-container">
+      <button onclick="window.location.href='game.html'"><i class="fas fa-play"></i> Start Game</button>
+      <button onclick="window.location.href='index.html'"><i class="fas fa-home"></i> Main Menu</button>
+    </div>
+  </div>
+  <audio id="bgMusic" src="assets/sounds/chill.mp3" loop></audio>
+  <script src="main.js">main.js</script>
+</body>
+</html>
